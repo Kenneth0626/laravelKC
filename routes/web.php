@@ -24,3 +24,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HelloWorldJSController::class, 'index']);
 
 
+Route::get('/hello', [HelloWorldJSController::class, 'helloWorld']);
+

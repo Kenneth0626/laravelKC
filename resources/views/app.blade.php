@@ -9,7 +9,7 @@
         <!-- As you can see, we will use vite with jsx syntax for React-->
         @inertiaHead
     </head>
-    <body class="bg-cyan-400">
-        <div id="app" class="h-full flex whitespace-nowrap" data-page="{{ json_encode($page) }}"></div>
+    <body class="bg-cyan-400 overflow-auto flex justify-items-center m-auto">
+        <div id="app" class="block whitespace-nowrap w-fit" data-page="{{ json_encode($page) }}"></div>
     </body>
 </html>
