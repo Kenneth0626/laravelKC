@@ -9,11 +9,6 @@ class HelloWorldJSController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Components/Navigation');
-    }
-
-    public function helloWorld()
-    {
         return Inertia::render('HelloWorld');
     }
 }
