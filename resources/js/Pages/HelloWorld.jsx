@@ -1,6 +1,6 @@
 import Layout from "./Layout/Layout";
 
-function HelloWorld() {
+export default function HelloWorld () {
     return(
         <Layout>
             <div className="bg-violet-500 border-4 border-indigo-800 w-fit h-fit rounded-lg m-auto drop-shadow-2xl overflow-x-auto">
@@ -11,5 +11,3 @@ function HelloWorld() {
         </Layout>      
     )
 }
-
-export default HelloWorld
