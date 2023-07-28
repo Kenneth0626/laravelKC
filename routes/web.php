@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HelloWorldController;
+use App\Http\Controllers\HelloWorldJSController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('hw.hello');
 // });
 
-Route::get('/', HelloWorldController::class);
+// Route::get('/', HelloWorldController::class);
+
+Route::get('/', [HelloWorldJSController::class, 'index']);
 
 
