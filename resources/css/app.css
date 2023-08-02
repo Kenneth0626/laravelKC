@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .todo-item:has(input:checked) {
+      @apply border-green-600 bg-green-200;
+    }
+}

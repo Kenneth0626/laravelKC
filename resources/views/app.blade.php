@@ -10,6 +10,6 @@
         @inertiaHead
     </head>
     <body class="bg-cyan-400 overflow-auto flex justify-items-center m-auto">
-        <div id="app" class="block whitespace-nowrap w-fit" data-page="{{ json_encode($page) }}"></div>
+        <div id="app" class="block whitespace-nowrap w-screen pb-[150rem]" data-page="{{ json_encode($page) }}"></div>
     </body>
 </html>
