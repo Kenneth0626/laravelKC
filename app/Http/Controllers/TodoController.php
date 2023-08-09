@@ -6,49 +6,45 @@ use App\Http\Requests\TodoRequest;
 use App\Models\Todo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class TodoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $pages = Todo::orderBy('created_at')->paginate(10,['id', 'title', 'is_checked']);
+        $user_id = Auth::user()->id;
 
-        if($pages->currentPage() != 1 && empty($pages->items()))
+        $pages = Todo::where('user_id', $user_id)->orderBy('created_at')->paginate(10,['id', 'title', 'is_checked']);
+
+        if($pages->currentPage() != 1 && empty($pages->items())){
             return Inertia::render('TodoList/FallbackTodo');
-
+        }
+        
         return Inertia::render('TodoList/Index', compact('pages'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return Inertia::render('TodoList/CreateTodo');
+    public function create(Request $request)
+    {       
+        return Inertia::render('TodoList/CreateTodo', [
+            'user_id' => Auth::user()->id,
+            'page' => $request->query('page'),
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(TodoRequest $request): RedirectResponse
-    {   
+    {  
         $request->validated();
 
         Todo::create([
+            'user_id' => $request->user_id,
             'title' => $request->title,
             'is_checked' => $request->is_checked,
         ]);
 
-        return redirect(route('todo.index'));
+        return redirect(route('todo.index', ['page' => $request->page]));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function updateCheck(Request $request, string $id)
     {   
         $request->validate([
@@ -62,14 +58,11 @@ class TodoController extends Controller
         return back();
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {   
         return Inertia::render('TodoList/EditTodo', [
-            'item' => Todo::findOrFail($id)
+            'item' => Todo::findOrFail($id),
+            'page' => $request->query('page', '1'),
         ]);
     }
 
@@ -81,16 +74,17 @@ class TodoController extends Controller
             'title' => $request->title,
         ]);
 
-        return redirect(route('todo.index'));
+        return redirect(route('todo.index', ['page' => $request->page]));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         Todo::destroy($id);
 
-        return redirect(route('todo.index'));
+        if($request->page != 1 && $request->itemCount - 1 === 0){
+            return redirect(route('todo.index', ['page' => $request->page - 1]));
+        }
+
+        return back();
     }
 }

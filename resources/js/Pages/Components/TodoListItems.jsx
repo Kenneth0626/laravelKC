@@ -1,11 +1,9 @@
-
 import TodoItems from "./TodoItems"
 import EmptyTodoList from "./EmptyTodoList"
 import Pagination from "./Pagination"
 import CustomButton from "./CustomButton"
 
-export default function TodoListItems ({ page, pageLink, onAddButton }) {
-
+export default function TodoListItems ({ page, currentPage, pageLink, onAddButton }) {
 
     return (
         <>  
@@ -17,27 +15,36 @@ export default function TodoListItems ({ page, pageLink, onAddButton }) {
             </CustomButton>
 
             <ul className="mx-[15rem] mt-3 min-w-[50rem]">
+
                 {page.length === 0 && (
                     <EmptyTodoList>
                         Empty
                     </EmptyTodoList>
                 )}
+
                 {page.length > 0 && (
                     page.map((item) => {
                         return (
                             <TodoItems 
-                                {...item}
+                                item={item}
+                                currentPage={currentPage}
+                                itemCount={page.length}
                                 key={item.id}
+                                
                             />
                         )
                     })
                 )}
-            </ul>
 
-            <Pagination
-                links={pageLink}
-                className="mb-[20rem]"
-            /> 
+            </ul>
+            
+            {pageLink.length > 3 && (
+                <Pagination
+                    links={pageLink}
+                    currentPage={currentPage}
+                    className="mb-[20rem]"
+                /> 
+            )}
         </> 
     )
 }

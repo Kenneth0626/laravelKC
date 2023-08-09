@@ -1,4 +1,3 @@
-
 import TodoHeader from "../Components/TodoHeader";
 import EmptyList from "../Components/EmptyTodoList";
 
@@ -6,7 +5,7 @@ export default function Index () {
     
     return (
         <>  
-            <TodoHeader>
+            <TodoHeader isFallback={true}>
                 Hello There.
             </TodoHeader>
             

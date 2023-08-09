@@ -1,31 +1,26 @@
-
 import { Link } from '@inertiajs/react';
 import React, { useMemo } from 'react';
   
-export default function Pagination ({ links }) {
-
-    // Get current active page number
-    const currentPage = ()  => {
-        return (links[0].url === null) ? 1 : parseInt(links[0].url.split("=")[1]) + 1
-    }
+export default function Pagination ({ links, currentPage }) {
 
     // Generate pagination links
     const newLinks = useMemo(() => {
 
+        console.log("yes")
         // Displays how many links should show next to active page link
-        const linksOnEachSide = 4
+        const linksOnEachSide = 1
 
         const linksLastIndex = links.length - 1
 
         // Get number of links to display left of active page link
         const startLinkDisplay = () => {
-            const startingLink = currentPage() - linksOnEachSide
+            const startingLink = currentPage - linksOnEachSide
             return (startingLink < 2) ? 2 : startingLink
         }
 
         // Get number of links to display right of active page link
         const endLinkDisplay = () => {
-            const endLink = currentPage() + linksOnEachSide + 1 
+            const endLink = currentPage + linksOnEachSide + 1 
             return (endLink > links.length - 2) ? links.length - 2 : endLink
         }
 
@@ -36,7 +31,7 @@ export default function Pagination ({ links }) {
 
         return initialLinks
 
-    }, [ window.location.href, links.length ]) 
+    }, [ currentPage, links.length ]) 
 
     function cleanLabel(label){
         if(label === "&laquo; Previous"){
@@ -58,25 +53,57 @@ export default function Pagination ({ links }) {
         return "border-green-600 bg-green-200"
     }
 
+    function dotDisplay(previousLabel, nextElement){
+        if(previousLabel === null || nextElement === undefined || nextElement.label === null){
+            return false
+        }
+
+        const previousPage = parseInt(previousLabel)
+        const nextPage = parseInt(nextElement.label)
+
+        if(isNaN(previousPage) || isNaN(nextPage)){
+            return false
+        }
+
+        return !(nextPage - previousPage === 1)
+    }
+
+    function disableLink(state){
+        return state === true ? "pointer-events-none" : ""
+    }
+
     return (
         <div className="flex min-w-[50rem] justify-end mx-[15rem]">
-            {links.length > 3 && (
-                <div className="bg-slate-400 border-slate-600 border-4 flex space-x-1 py-2 px-2 rounded-xl">
-                    { newLinks.map((link, index) => (
+
+            <div className="bg-slate-400 border-slate-600 border-4 flex space-x-1 py-2 px-2 rounded-xl" >
+
+                { newLinks.map((link, index) => (
+                    <div 
+                        className='pb-1'
+                        key={index}
+                    >
+
                         <span
-                            className={`border-4 text-xl font-bold rounded-xl w-fit h-fit ${linkActive(link.url, link.active)}`}
+                            className={`border-4 text-xl font-bold rounded-xl pb-1 ${linkActive(link.url, link.active)}`}
                             key={index}
-                        >        
+                        >   
+
                             <Link 
                                 href={link.url}
-                                className="inline-block relative px-[0.8rem] py-[0.1rem] text-center"
+                                className={`inline-block relative px-[0.8rem] py-[0.1rem] text-center ${disableLink((link.url === null || link.active))}`}
                             >   
                                 {cleanLabel(link.label)}
-                            </Link>
-                        </span>
-                    ))}
-                </div>
-            )}  
+                            </Link>    
+                            
+                        </span> 
+
+                        {dotDisplay(link.label, newLinks[index + 1]) && <span className='pt-3 font-bold text-xl'> ... </span>}
+
+                    </div>
+                ))}
+
+            </div> 
+
         </div> 
     )     
 }
