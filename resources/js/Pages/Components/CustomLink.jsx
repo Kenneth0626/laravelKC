@@ -1,8 +1,8 @@
 
-export default function CustomLink ({ onLinkClick, buttonStyle, isProcessing, children }) {
+export default function CustomLink ({ onLinkClick, linkType = "button", buttonStyle, isProcessing, children }) {
     return (
         <button
-            type="button"
+            type={linkType}
             onClick={onLinkClick}
             className={`underline underline-offset-2 mt-auto ${buttonStyle}`}
             disabled={isProcessing}

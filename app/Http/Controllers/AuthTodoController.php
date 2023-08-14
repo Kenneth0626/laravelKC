@@ -66,8 +66,12 @@ class AuthTodoController extends Controller
         $user = Auth::user();
 
         $todos = $user->todos;
+        $posts = $user->posts;
+        $comments = $user->comments;
 
-        $count = $todos->count();
+        $todo_count = $todos->count();
+        $post_count = $posts->count();
+        $comment_count = $comments->count();
         
         $unfinished_count = $todos->where('is_checked', 0)->count();
 
@@ -77,9 +81,11 @@ class AuthTodoController extends Controller
         return Inertia::render('AuthTodo/HomeTodo', [
             'username' => $user->username,
             'todo' => [
-                'count' => $count,
+                'todo_count' => $todo_count,
                 'unfinished_count' => $unfinished_count,
-                'finished_count' => $count - $unfinished_count,
+                'finished_count' => $todo_count - $unfinished_count,
+                'post_count' => $post_count,
+                'comment_count' => $comment_count,
                 // 'last_finished_title' => $todo_title,
             ]
         ]);

@@ -1,8 +1,8 @@
 import { usePage, useForm, router } from '@inertiajs/react'
 import AuthTodoHeader from '../Components/AuthTodoHeader'
-import AuthTodoLayout from '../Layout/AuthTodoLayout'
+import TodoLayout from '../Layout/TodoLayout'
 import AuthTodoForm from '../Components/AuthTodoForm'
-import AuthTodoInput from '../Components/AuthTodoInput'
+import FormInput from '../Components/FormInput'
 import AuthTodoFormAction from '../Components/AuthTodoFormAction'
 import CustomLink from '../Components/CustomLink'
 import CustomButton from "../Components/CustomButton"
@@ -24,26 +24,35 @@ export default function RegisterTodo () {
     }
 
     return (
-        <AuthTodoLayout layoutStyle="min-w-[30rem] max-w-[30rem]">
+        <TodoLayout layoutStyle="min-w-[30rem] max-w-[30rem]">
 
             <AuthTodoHeader>
 
                 <h1 className="text-2xl">
                     Todo List Login
                 </h1>
+
+                <CustomLink
+                    onLinkClick={() => router.get('/post')}
+                    linkType="button"
+                    buttonStyle="text-blue-700"
+                    isProcessing={processing}
+                >
+                    View Posts
+                </CustomLink>
                 
             </AuthTodoHeader>
 
             <AuthTodoForm onSubmitButton={handleSubmit}>
                 
-                <AuthTodoInput 
+                <FormInput 
                     label="Email"
                     inputType="email"
                     value={data.email}
                     onInputChange={e => setData('email', e.target.value)}
                 />
 
-                <AuthTodoInput 
+                <FormInput 
                     label="Password"
                     inputError={errors.password}
                     inputType="password"
@@ -72,6 +81,6 @@ export default function RegisterTodo () {
 
             </AuthTodoForm>
 
-        </AuthTodoLayout>
+        </TodoLayout>
     )
 }

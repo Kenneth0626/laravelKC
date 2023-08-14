@@ -1,16 +1,15 @@
 import { Link } from '@inertiajs/react';
 import React, { useMemo } from 'react';
   
-export default function Pagination ({ links, currentPage }) {
+export default function Pagination ({ links=[], length, paginationStyle, currentPage }) {
 
     // Generate pagination links
     const newLinks = useMemo(() => {
 
-        console.log("yes")
         // Displays how many links should show next to active page link
         const linksOnEachSide = 1
 
-        const linksLastIndex = links.length - 1
+        const linksLastIndex = length - 1
 
         // Get number of links to display left of active page link
         const startLinkDisplay = () => {
@@ -31,7 +30,7 @@ export default function Pagination ({ links, currentPage }) {
 
         return initialLinks
 
-    }, [ currentPage, links.length ]) 
+    }, [ currentPage, length ]) 
 
     function cleanLabel(label){
         if(label === "&laquo; Previous"){
@@ -73,37 +72,42 @@ export default function Pagination ({ links, currentPage }) {
     }
 
     return (
-        <div className="flex min-w-[50rem] justify-end mx-[15rem]">
+        <>
+            { length > 3 && (
+                <div className={`flex justify-end ${paginationStyle}`}>
 
-            <div className="bg-slate-400 border-slate-600 border-4 flex space-x-1 py-2 px-2 rounded-xl" >
+                    <div className="bg-slate-400 border-slate-600 border-4 flex space-x-1 py-2 px-2 rounded-xl" >
 
-                { newLinks.map((link, index) => (
-                    <div 
-                        className='pb-1'
-                        key={index}
-                    >
+                        { newLinks.map((link, index) => (
+                            <div 
+                                className='pb-1'
+                                key={index}
+                            >
 
-                        <span
-                            className={`border-4 text-xl font-bold rounded-xl pb-1 ${linkActive(link.url, link.active)}`}
-                            key={index}
-                        >   
+                                <span
+                                    className={`border-4 text-xl font-bold rounded-xl pb-1 ${linkActive(link.url, link.active)}`}
+                                    key={index}
+                                >   
 
-                            <Link 
-                                href={link.url}
-                                className={`inline-block relative px-[0.8rem] py-[0.1rem] text-center ${disableLink((link.url === null || link.active))}`}
-                            >   
-                                {cleanLabel(link.label)}
-                            </Link>    
-                            
-                        </span> 
+                                    <Link 
+                                        href={link.url}
+                                        className={`inline-block relative px-[0.8rem] py-[0.1rem] 
+                                            text-center ${disableLink((link.url === null || link.active))}`}
+                                    >   
+                                        {cleanLabel(link.label)}
+                                    </Link>    
+                                    
+                                </span> 
 
-                        {dotDisplay(link.label, newLinks[index + 1]) && <span className='pt-3 font-bold text-xl'> ... </span>}
+                                {dotDisplay(link.label, newLinks[index + 1]) && <span className='pt-3 font-bold text-xl'> ... </span>}
 
-                    </div>
-                ))}
+                            </div>
+                        ))}
 
-            </div> 
+                    </div> 
 
-        </div> 
+                </div> 
+            )}
+        </>
     )     
 }

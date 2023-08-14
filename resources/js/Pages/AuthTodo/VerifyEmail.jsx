@@ -1,5 +1,5 @@
 import { useForm, usePage, router } from '@inertiajs/react'
-import AuthTodoLayout from '../Layout/AuthTodoLayout'
+import TodoLayout from '../Layout/TodoLayout'
 import AuthTodoHeader from '../Components/AuthTodoHeader'
 import CustomLink from '../Components/CustomLink'
 import AuthTodoForm from '../Components/AuthTodoForm'
@@ -18,7 +18,7 @@ export default function VerifyEmail () {
     };
 
     return (
-        <AuthTodoLayout layoutStyle="min-w-[35rem] max-w-[35rem]">
+        <TodoLayout layoutStyle="min-w-[35rem] max-w-[35rem]">
 
             <AuthTodoHeader>
 
@@ -66,6 +66,6 @@ export default function VerifyEmail () {
 
             </AuthTodoForm>
             
-        </AuthTodoLayout>
+        </TodoLayout>
     )
 }

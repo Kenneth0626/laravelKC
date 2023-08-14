@@ -37,14 +37,13 @@ export default function TodoListItems ({ page, currentPage, pageLink, onAddButto
                 )}
 
             </ul>
+
+            <Pagination
+                links={pageLink}
+                paginationStyle="mx-[15rem]"
+                currentPage={currentPage}
+            /> 
             
-            {pageLink.length > 3 && (
-                <Pagination
-                    links={pageLink}
-                    currentPage={currentPage}
-                    className="mb-[20rem]"
-                /> 
-            )}
         </> 
     )
 }

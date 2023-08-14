@@ -2,17 +2,15 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class AuthTodoRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
-    {  
+    {
         return true;
     }
 
@@ -22,11 +20,10 @@ class AuthTodoRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
-    {   
+    {
         return [
-            'username' => ['required', 'string', 'alpha_num', 'min:3', 'max:255', 'unique:'.User::class],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Password::min(8)->numbers()],
+            'title' => ['required', 'max:255'],
+            'content' => ['required', 'max:255'],
         ];
     }
 }

@@ -1,10 +1,10 @@
-import AuthTodoHeader from '../Components/AuthTodoHeader'
-import AuthTodoLayout from '../Layout/AuthTodoLayout'
 import { Link } from '@inertiajs/react'
+import AuthTodoHeader from '../Components/AuthTodoHeader'
+import TodoLayout from '../Layout/TodoLayout'
 
 export default function HomeTodo ({ username, todo }) {
     return (
-        <AuthTodoLayout layoutStyle="min-w-[80rem] max-w-[80rem]">
+        <TodoLayout layoutStyle="min-w-[80rem] max-w-[80rem]">
             
             <AuthTodoHeader>
 
@@ -19,6 +19,13 @@ export default function HomeTodo ({ username, todo }) {
                             className="text-blue-800"    
                         >
                             My Todos
+                        </Link>
+
+                        <Link 
+                            href='/post'
+                            className="text-blue-800"    
+                        >
+                            See Posts
                         </Link>
 
                         <Link 
@@ -50,7 +57,7 @@ export default function HomeTodo ({ username, todo }) {
                     <div className="mt=[1rem] text-2xl">
 
                         <h1>
-                            Todos: <span className="text-green-400"> {todo.count} </span> 
+                            Todos: <span className="text-green-400"> {todo.todo_count} </span> 
                         </h1>
 
                         <h1>
@@ -61,6 +68,14 @@ export default function HomeTodo ({ username, todo }) {
                             Finished Todos: <span className="text-green-400"> {todo.finished_count} </span>
                         </h1>
 
+                        <h1>
+                            Posts: <span className="text-green-400"> {todo.post_count} </span>
+                        </h1>
+
+                        <h1>
+                            Comments: <span className="text-green-400"> {todo.comment_count} </span>
+                        </h1>
+
                         {/* <h1>
                             Last Finished Todo: <span className="text-green-400"> {todo.last_finished_title || 'None'} </span>
                         </h1> */}
@@ -69,6 +84,6 @@ export default function HomeTodo ({ username, todo }) {
 
                 </div>
 
-        </AuthTodoLayout>
+        </TodoLayout>
     )
 }

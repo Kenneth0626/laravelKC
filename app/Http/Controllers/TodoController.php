@@ -66,7 +66,7 @@ class TodoController extends Controller
         ]);
     }
 
-    public function update(TodoRequest $request, $id): RedirectResponse
+    public function update(TodoRequest $request, string $id): RedirectResponse
     {   
         $request->validated();
 

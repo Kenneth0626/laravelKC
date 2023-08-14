@@ -1,10 +1,10 @@
+import { useForm, Link } from '@inertiajs/react'
 import AuthTodoForm from '../Components/AuthTodoForm'
 import AuthTodoFormAction from '../Components/AuthTodoFormAction'
 import AuthTodoHeader from '../Components/AuthTodoHeader'
-import AuthTodoInput from '../Components/AuthTodoInput'
+import FormInput from '../Components/FormInput'
 import CustomButton from '../Components/CustomButton'
-import AuthTodoLayout from '../Layout/AuthTodoLayout'
-import { useForm, Link } from '@inertiajs/react'
+import TodoLayout from '../Layout/TodoLayout'
 
 export default function ProfileTodo ({ username, errors }) {
 
@@ -19,7 +19,7 @@ export default function ProfileTodo ({ username, errors }) {
     }
 
     return (
-        <AuthTodoLayout layoutStyle="min-w-[80rem] max-w-[80rem]">
+        <TodoLayout layoutStyle="min-w-[80rem] max-w-[80rem]">
             
             <AuthTodoHeader>
 
@@ -61,7 +61,7 @@ export default function ProfileTodo ({ username, errors }) {
                 onSubmitButton={handleSubmit}
             >
 
-                <AuthTodoInput 
+                <FormInput 
                     label="Name"
                     inputError={errors.username}
                     value={data.username}
@@ -81,6 +81,6 @@ export default function ProfileTodo ({ username, errors }) {
                 
             </AuthTodoForm>
 
-        </AuthTodoLayout>
+        </TodoLayout>
     )
 }
