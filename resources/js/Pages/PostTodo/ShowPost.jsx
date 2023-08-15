@@ -1,5 +1,5 @@
 import { router, useForm } from "@inertiajs/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import TodoLayout from "../Layout/TodoLayout"
 import Pagination from "../Components/Pagination"
 import CustomLink from "../Components/CustomLink"
@@ -90,6 +90,7 @@ export default function ShowPost ({ postData, guest, comments, currentPage }) {
                 <PostCommentsShow
                     commentsData={comments.data}
                     guestID={guest.id}
+                    isProcessing={processing}
                     item={item}
                     setItem={setItem}
                     commentPage={currentPage}

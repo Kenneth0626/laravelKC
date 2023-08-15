@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GuestCommented;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\PostRequest;
 use App\Models\Comment;
@@ -87,7 +88,7 @@ class PostController extends Controller
                 'username' => is_bool($guest) ? null : $guest->username,
             ],
             'comments' => $comments,
-            'commentPage' => $comments->currentPage()
+            'currentPage' => $comments->currentPage()
         ]);
     }
 
@@ -145,12 +146,14 @@ class PostController extends Controller
     {
         $request->validated();
 
-        Comment::create([
+        $comment = Comment::create([
             'post_id' => $id,
             'user_id' => $request->user_id,
             'user_username' => $request->user_username,
             'content' => $request->content,
         ]);
+
+        GuestCommented::dispatch($comment);
 
         return redirect()->back();
     }

@@ -1,7 +1,7 @@
 
 import PostCommentItem from "./PostCommentItem";
 
-export default function PostCommentsShow ({ commentsData, guestID, item, setItem, commentPage }) {
+export default function PostCommentsShow ({ commentsData, guestID, isProcessing, item, setItem, commentPage }) {
 
     return (
         <>
@@ -18,6 +18,7 @@ export default function PostCommentsShow ({ commentsData, guestID, item, setItem
                             key={comment.id}
                             comment={comment}
                             guestID={guestID}
+                            isProcessing={isProcessing}
                             item={item}
                             setItem={setItem}
                             commentPage={commentPage}

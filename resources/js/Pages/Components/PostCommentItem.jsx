@@ -3,7 +3,7 @@ import PostCommentContent from "./PostCommentContent"
 import PostCommentEditItemOptions from "./PostCommentEditItemOptions"
 import PostCommentItemOptions from "./PostCommentItemOptions"
 
-export default function PostCommentItem ({ comment, guestID, item, setItem, commentPage = 1, itemCount }) {
+export default function PostCommentItem ({ comment, guestID, isProcessing, item, setItem, commentPage = 1, itemCount }) {
 
     const { data, setData, post, processing, reset } = useForm({
         _method: 'patch',
@@ -76,6 +76,7 @@ export default function PostCommentItem ({ comment, guestID, item, setItem, comm
                                 },
                                 { preserveScroll: true }
                             )}
+                            isProcessing={processing || isProcessing}
                         />
                         
                     </div>
