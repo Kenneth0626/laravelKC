@@ -4,6 +4,7 @@ import AuthTodoFormAction from '../Components/AuthTodoFormAction'
 import AuthTodoHeader from '../Components/AuthTodoHeader'
 import FormInput from '../Components/FormInput'
 import CustomButton from '../Components/CustomButton'
+import CustomLink from '../Components/CustomLink'
 import TodoLayout from '../Layout/TodoLayout'
 
 export default function ProfileTodo ({ username, errors }) {
@@ -31,14 +32,28 @@ export default function ProfileTodo ({ username, errors }) {
             
                     <Link 
                         href='/todo'
-                        className="text-blue-800"    
+                        className="text-blue-800 underline"    
                     >
                         My Todos
                     </Link>
+
+                    <Link 
+                        href='/post'
+                        className="text-blue-800 underline"    
+                    >
+                        See Posts
+                    </Link>
+
+                    <CustomLink 
+                        onLinkClick={() => router.get('/chat/general')}
+                        buttonStyle="text-blue-800"    
+                    >
+                        General Chat
+                    </CustomLink>
             
                     <Link 
                         href='/home'
-                        className="text-green-700"    
+                        className="text-green-700 underline"    
                     >
                         Home
                     </Link>

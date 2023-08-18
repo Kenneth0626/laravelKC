@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AuthTodoController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\FallbackTodoController;
 use App\Http\Controllers\HelloWorldController;
 use App\Http\Controllers\HelloWorldJSController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PublicMessageController;
 use App\Http\Controllers\TodoController;
 
 use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
@@ -53,6 +55,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile', [AuthTodoController::class, 'profile'])->name('todo.profile');
     Route::patch('/profile', [AuthTodoController::class, 'update'])->name('todo.update_profile');
 
+    Route::get('/chat/general', [PublicMessageController::class, 'index'])->name('chat.general');
+    Route::post('/chat/general', [PublicMessageController::class, 'store'])->name('chat.store');
+    
     Route::prefix('post')->group(function () {
         Route::get('/create', [PostController::class, 'createPost'])->name('post.create');
         Route::post('/create', [PostController::class, 'storePost'])->name('post.store');

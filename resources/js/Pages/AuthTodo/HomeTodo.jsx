@@ -1,5 +1,6 @@
-import { Link } from '@inertiajs/react'
+import { Link, router } from '@inertiajs/react'
 import AuthTodoHeader from '../Components/AuthTodoHeader'
+import CustomLink from '../Components/CustomLink'
 import TodoLayout from '../Layout/TodoLayout'
 
 export default function HomeTodo ({ username, todo }) {
@@ -16,21 +17,28 @@ export default function HomeTodo ({ username, todo }) {
 
                         <Link 
                             href='/todo'
-                            className="text-blue-800"    
+                            className="text-blue-800 underline"    
                         >
                             My Todos
                         </Link>
 
                         <Link 
                             href='/post'
-                            className="text-blue-800"    
+                            className="text-blue-800 underline"    
                         >
                             See Posts
                         </Link>
 
+                        <CustomLink 
+                            onLinkClick={() => router.get('/chat/general')}
+                            buttonStyle="text-blue-800"    
+                        >
+                            General Chat
+                        </CustomLink>
+
                         <Link 
                             href='/profile'
-                            className="text-green-700"    
+                            className="text-green-700 underline"    
                         >
                             Edit Profile
                         </Link>
