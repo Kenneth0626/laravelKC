@@ -35,7 +35,7 @@ export async function getEditablePostData (url) {
 
 export async function getPostComments (url) {
     try{
-        const response = await axios.get(`/api/comments/posts/${url}`,{
+        const response = await axios.get(`/api/posts/comments/${url}`,{
             headers: {
                 "Authorization": `Bearer ${cookies().get('Bearer')?.value}`
             }
