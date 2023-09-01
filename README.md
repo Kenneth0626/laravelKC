@@ -1,1 +1,0 @@
-# Laravel and NextJS Application
