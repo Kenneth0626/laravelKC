@@ -59,6 +59,7 @@ export async function getPostData (url) {
         return response.data.data
     }
     catch(err){
+        console.log(err.response.status)
         return err.response.status
     }
 }

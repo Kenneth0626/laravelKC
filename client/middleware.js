@@ -5,11 +5,16 @@ import { authUser } from "./lib/authentication"
 
 export default async function middlware(request){
 
-    if(request.nextUrl.pathname.includes("edit")){
+    const urlParts = request.nextUrl.pathname.split('/')
 
-        const postId = request.nextUrl.pathname.split('/')[2]
+    
+    if(urlParts.length === 4, urlParts[1] === "posts", urlParts[3] === "edit"){
 
-        const response = await authPost(postId, request.cookies.get('Bearer'))
+        if( isNaN(urlParts[2] )){
+            return NextResponse.redirect(new URL('/posts', request.url))
+        }
+
+        const response = await authPost(urlParts[2], request.cookies.get('Bearer'))
 
         if(response === "none"){
             return NextResponse.redirect(new URL('/', request.url))
@@ -31,7 +36,7 @@ export default async function middlware(request){
 
     }
         
-    if(request.nextUrl.pathname.includes("create")){
+    if(urlParts.length === 3 && urlParts[1] === "posts" && urlParts[2] === "create"){
         
         const response = await authUser(request.cookies.get('Bearer'))
 
@@ -41,6 +46,10 @@ export default async function middlware(request){
 
     }
 
+    if(urlParts.length === 3 && urlParts[1] === "posts" && isNaN(urlParts[2])){
+        return NextResponse.redirect(new URL('/posts', request.url))
+    }
+
 }
 
 export const config = {
@@ -48,5 +57,6 @@ export const config = {
         '/',
         '/posts/create',
         '/posts/:path*/edit',
+        '/posts/:path*',
     ]
 }

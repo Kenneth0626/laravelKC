@@ -54,8 +54,6 @@ export default function PostsList () {
         )
     }
 
-    console.log(data)
-
     return (
         <div className="flex flex-col space-y-5">
 

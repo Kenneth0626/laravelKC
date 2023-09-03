@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import useSWR from 'swr';
 import { deletePost, getPostData } from "@/lib/postActions";
+import PostNotFound from "@/components/postNotFound";
  
  export default function ShowPost ({ params }) {
     
@@ -19,12 +20,6 @@ import { deletePost, getPostData } from "@/lib/postActions";
 
     const router = useRouter()
 
-    if (isLoading || isPending || isValidating){
-        return (
-            <FetchLoading textStyle="text-4xl text-slate-400"/>
-        )
-    }
-
     async function destroyPost(id){
 
         const res = await deletePost(id)
@@ -33,6 +28,18 @@ import { deletePost, getPostData } from "@/lib/postActions";
             router.push('/posts', { scroll: false })
         }
 
+    }
+
+    if (isLoading || isPending || isValidating){
+        return (
+            <FetchLoading textStyle="text-4xl text-slate-400"/>
+        )
+    }
+
+    if (data === 404){
+        return (
+            <PostNotFound />
+        )
     }
 
     return (
@@ -66,7 +73,7 @@ import { deletePost, getPostData } from "@/lib/postActions";
                                 posted at { data?.post?.attributes?.created_at }
                             </span>
 
-                            { data?.post.attributes?.created_at !== data?.post?.attributes?.updated_at && (
+                            { data?.post?.attributes?.created_at !== data?.post?.attributes?.updated_at && (
                                 <span className="text-xl italic">
                                     {"(edited)"}
                                 </span>
@@ -101,7 +108,7 @@ import { deletePost, getPostData } from "@/lib/postActions";
                         <Link
                             href="/posts"
                             scroll={false}
-                            className="text-blue-500"
+                            className="text-blue-500 hover:underline"
                         >
                             Return
                         </Link>

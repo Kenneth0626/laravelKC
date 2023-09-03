@@ -38,7 +38,7 @@ export default function RegisterSection () {
     }
 
     return (
-        <main className="pt-[6rem] px-[30rem] w-full">
+        <main className="pt-[8rem] px-[30rem] w-full">
 
             <div className="bg-slate-400 border-4 border-black rounded-lg p-4">
                 
