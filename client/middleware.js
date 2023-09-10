@@ -26,7 +26,7 @@ export default async function middlware(request){
 
     }
 
-    if(request.nextUrl.pathname === "/"){
+    else if(request.nextUrl.pathname === "/"){
         
         const response = await authUser(request.cookies.get('Bearer'))
 
@@ -36,7 +36,7 @@ export default async function middlware(request){
 
     }
         
-    if(urlParts.length === 3 && urlParts[1] === "posts" && urlParts[2] === "create"){
+    else if(urlParts.length === 3 && urlParts[1] === "posts" && urlParts[2] === "create"){
         
         const response = await authUser(request.cookies.get('Bearer'))
 
@@ -46,7 +46,7 @@ export default async function middlware(request){
 
     }
 
-    if(urlParts.length === 3 && urlParts[1] === "posts" && isNaN(urlParts[2])){
+    else if(urlParts.length === 3 && urlParts[1] === "posts" && isNaN(urlParts[2])){
         return NextResponse.redirect(new URL('/posts', request.url))
     }
 
