@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/components/hello_world.dart';
+// import 'package:mobile/components/hello_world.dart';
+import 'package:mobile/pages/page_one.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,15 +12,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Flutter Demo',
+
       theme: ThemeData(
+
         useMaterial3: true,
+
         primaryColor: Colors.grey,
+
         primaryColorLight: Colors.grey[400],
+
         scaffoldBackgroundColor: Colors.cyanAccent,
+
         shadowColor: Colors.black,
+
       ),
-      home: const HelloWorld(),
+
+      home: const PageOne(),
     );
   }
 }

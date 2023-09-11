@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/components/drawer/my_drawer.dart';
 
-class HelloWorld extends StatelessWidget {
-  const HelloWorld({super.key});
+class PageOne extends StatelessWidget {
+  const PageOne({super.key});
+
+  final String pageLabel = "Page One";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
 
         backgroundColor: Theme.of(context).primaryColor,
@@ -14,16 +18,16 @@ class HelloWorld extends StatelessWidget {
 
         shadowColor: Theme.of(context).shadowColor,
 
-        title: const Center(
-          child: Text("Hello World"),
-        ), 
+        title: Text(pageLabel) 
 
       ),
 
-      body: const Center(
+      drawer: MyDrawer(page: pageLabel,),
+      
+      body: Center(
         child: Text(
-          "Hello World!",
-          style: TextStyle(fontSize: 40),  
+          pageLabel,
+          style: const TextStyle(fontSize: 40),  
         ),
       ),
       
