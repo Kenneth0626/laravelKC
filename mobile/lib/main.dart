@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/loading.dart';
 // import 'package:mobile/components/hello_world.dart';
-import 'package:mobile/pages/page_one.dart';
+// import 'package:mobile/pages/pageNumber/page_one.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,20 +17,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
 
       theme: ThemeData(
-
         useMaterial3: true,
-
         primaryColor: Colors.grey,
-
         primaryColorLight: Colors.grey[400],
-
         scaffoldBackgroundColor: Colors.cyanAccent,
-
         shadowColor: Colors.black,
-
       ),
 
-      home: const PageOne(),
+      home: const FirstOpen(),
     );
   }
 }
