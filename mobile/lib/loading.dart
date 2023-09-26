@@ -4,22 +4,16 @@ import 'package:mobile/components/drawer/guest_drawer.dart';
 import 'package:mobile/pages/guest/login_form.dart';
 import 'package:mobile/pages/page_layout.dart';
 import 'package:mobile/pages/user/welcome.dart';
-import 'package:mobile/services/authenticate_service.dart';
+import 'package:mobile/services/token/get_token_service.dart';
 
-class FirstOpen extends StatefulWidget {
+class FirstOpen extends StatelessWidget {
   const FirstOpen({super.key});
 
-  @override
-  State<FirstOpen> createState() => _FirstOpenState();
-}
-
-class _FirstOpenState extends State<FirstOpen> {
-  
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
 
-      future: authenticateService(), 
+      future: getTokenService(), 
 
       builder: (context, snapshot){
 
@@ -30,9 +24,8 @@ class _FirstOpenState extends State<FirstOpen> {
             ),
           );
         }
-
         else{
-          if(snapshot.data == 401) {
+          if(snapshot.data == null) {
             return const PageLayout(
               label: "Login",
               drawer: GuestDrawer(page: "Login"),
@@ -47,8 +40,9 @@ class _FirstOpenState extends State<FirstOpen> {
             );
           }
         }
-
+        
       }
+
     );
   }
 }

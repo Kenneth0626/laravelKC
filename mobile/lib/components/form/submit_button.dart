@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 class SubmitButton extends StatelessWidget {
   const SubmitButton({
     super.key,
-    this.onTap,
     required this.label,
-    this.emailController,
-    this.passwordController,
+    this.labelSize = 18,
+    this.onTap,
   });
 
   final String label;
-  final TextEditingController? emailController;
-  final TextEditingController? passwordController;
+  final double labelSize;
   final Function()? onTap;
 
   @override
@@ -26,7 +24,12 @@ class SubmitButton extends StatelessWidget {
         minimumSize: const Size(double.infinity, 40),
       ),
 
-      child: Text(label),
+      child: Text(
+        label,
+        style: TextStyle(
+          fontSize: labelSize,
+        ),
+      ),
 
     );
   }

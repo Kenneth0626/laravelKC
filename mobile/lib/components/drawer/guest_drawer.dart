@@ -3,7 +3,7 @@ import 'package:mobile/components/drawer/navigation_tile.dart';
 import 'package:mobile/pages/guest/login_form.dart';
 import 'package:mobile/pages/guest/register_form.dart';
 import 'package:mobile/pages/page_layout.dart';
-import 'package:mobile/pages/posts.dart';
+import 'package:mobile/pages/post/see_posts.dart';
 // import 'package:mobile/pages/pageNumber/page_one.dart';
 // import 'package:mobile/pages/pageNumber/page_three.dart';
 // import 'package:mobile/pages/pageNumber/page_two.dart';

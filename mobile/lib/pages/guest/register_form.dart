@@ -10,7 +10,7 @@ import 'package:mobile/components/form/username_field.dart';
 import 'package:mobile/pages/guest/login_form.dart';
 import 'package:mobile/pages/page_layout.dart';
 import 'package:mobile/pages/user/welcome.dart';
-import 'package:mobile/services/register_service.dart';
+import 'package:mobile/services/auth/register_service.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});

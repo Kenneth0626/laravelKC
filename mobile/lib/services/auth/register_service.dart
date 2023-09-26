@@ -1,11 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobile/services/api_host.dart';
 
 Future<dynamic> registerService(String jsonData) async {
-
-  const  String registerApi = 'http://192.168.0.26:8000/api/register';
+  
+  String registerApi = '${apiHost()}register';
 
   final Map<String, String> headers = {
       "Accept": "application/json",

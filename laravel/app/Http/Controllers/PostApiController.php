@@ -116,7 +116,9 @@ class PostApiController extends Controller
                 'content' => $request->content,
             ]);
 
-            return $this->success("", "Post Successfully Updated.");
+            $post = Post::find($id);
+
+            return $this->success($post, "Post Successfully Updated.");
             
         }
 

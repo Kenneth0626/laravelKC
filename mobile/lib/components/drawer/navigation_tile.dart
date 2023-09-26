@@ -18,13 +18,14 @@ class NavigationTile extends StatelessWidget {
       
       title : Text(label),
 
-      tileColor: currentPage == label ? Theme.of(context).primaryColorLight : Colors.transparent,
+      tileColor: currentPage == label ? Theme.of(context).indicatorColor : Colors.transparent,
 
       onTap: (){
         if(currentPage != label){
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => child)
+              builder: (context) => child,
+            )
           );
         }
       },

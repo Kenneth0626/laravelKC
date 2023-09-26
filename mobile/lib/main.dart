@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/loading.dart';
+import 'package:mobile/provider/post_provider.dart';
+import 'package:provider/provider.dart';
 // import 'package:mobile/components/hello_world.dart';
 // import 'package:mobile/pages/pageNumber/page_one.dart';
 
@@ -12,19 +14,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ChangeNotifierProvider(
 
-      title: 'Flutter Demo',
+      create: (context) => PostProvider(),
 
-      theme: ThemeData(
-        useMaterial3: true,
-        primaryColor: Colors.grey,
-        primaryColorLight: Colors.grey[400],
-        scaffoldBackgroundColor: Colors.cyanAccent,
-        shadowColor: Colors.black,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          useMaterial3: true,
+          primaryColor: Colors.grey,
+          primaryColorLight: Colors.grey[200],
+          disabledColor: Colors.grey[300],
+          indicatorColor: Colors.grey[400],
+          highlightColor: Colors.blue[300],
+          cardColor: Colors.blue[100],
+          scaffoldBackgroundColor: Colors.cyanAccent,
+          shadowColor: Colors.black,
+        ),
+        home: const FirstOpen(),
       ),
-
-      home: const FirstOpen(),
+      
     );
   }
 }

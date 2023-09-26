@@ -8,7 +8,7 @@ import 'package:mobile/components/form/submit_button.dart';
 import 'package:mobile/pages/guest/register_form.dart';
 import 'package:mobile/pages/page_layout.dart';
 import 'package:mobile/pages/user/welcome.dart';
-import 'package:mobile/services/login_service.dart';
+import 'package:mobile/services/auth/login_service.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
